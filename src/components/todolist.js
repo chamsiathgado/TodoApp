@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import TodoItem from './check_todo'
 
-const prefilled = [{ text: 'Apprendre le React', completed: true},
-    { text: 'Manger', completed: true},
+const prefilled = [{ text: 'Apprendre le React', completed: false},
+    { text: 'Manger', completed: false},
     { text: 'Dormir', completed: false }];
 
 function Todolist() {
