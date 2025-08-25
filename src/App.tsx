@@ -1,25 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
+import type { Task } from "./types";
 import "./App.css";
 
-interface Task {
-  id: number;
-  text: string;
-  completed: boolean;
-}
+const defaultTasks: Task[] = [
+  { id: 1, text: "Learning React", completed: false },
+  { id: 2, text: "Learning TypeScript", completed: false },
+  { id: 3, text: "Learning Tailwind CSS", completed: false },
+];
 
 export default function App() {
-  const [tasks, setTasks] = useState<Task[]>([
-    { id: 1, text: "Learning React", completed: false },
-    { id: 2, text: "Learning TypeScript", completed: false },
-    { id: 3, text: "Learning Tailwind CSS", completed: false },
-  ]);
-  const [newTask, setNewTask] = useState("");
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : defaultTasks;
+  });
 
-  const addTask = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newTask.trim() === "") return;
-    setTasks([...tasks, { id: Date.now(), text: newTask, completed: false }]);
-    setNewTask("");
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
+  const addTask = (text: string) => {
+    setTasks([...tasks, { id: Date.now(), text, completed: false }]);
   };
 
   const toggleTask = (id: number) => {
@@ -34,35 +36,21 @@ export default function App() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  const resetTasks = () => {
+    setTasks(defaultTasks);
+    localStorage.setItem("tasks", JSON.stringify(defaultTasks));
+  };
+
   return (
     <div className="container">
-      <h1>Tasks</h1>
+      <h1>Review your Tsks</h1>
 
-      <form onSubmit={addTask}>
-        <input
-          type="text"
-          placeholder="Add a task"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-        />
-        <button type="submit">Submit</button>
-      </form>
+      <button onClick={resetTasks} style={{ marginBottom: "10px" }}>
+        🔄 Reset to Default
+      </button>
 
-      <ul>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <input
-              type="checkbox"
-              checked={task.completed}
-              onChange={() => toggleTask(task.id)}
-            />
-            <span className={task.completed ? "completed" : ""}>
-              {task.text}
-            </span>
-            <button onClick={() => deleteTask(task.id)}>🗑</button>
-          </li>
-        ))}
-      </ul>
+      <TaskForm addTask={addTask} />
+      <TaskList tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask} />
     </div>
   );
 }

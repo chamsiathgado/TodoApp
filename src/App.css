@@ -11,7 +11,7 @@ body {
   background-color: #2f3136;
   padding: 20px;
   border-radius: 10px;
-  width: 300px;
+  width: 500px;
   text-align: center;
 }
 
@@ -73,4 +73,18 @@ li button {
   border: none;
   cursor: pointer;
   font-size: 16px;
+}
+
+.clear-btn {
+  margin-top: 15px;
+  padding: 8px 12px;
+  background-color: #b50717;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background-color: #ff0000;
 }
