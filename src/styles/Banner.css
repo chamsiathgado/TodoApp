@@ -1,0 +1,47 @@
+/* Conteneur du header */
+.todo-banner {
+  display: flex;
+  align-items: center;       /* centre verticalement logo + texte */
+  justify-content: center;    /* centre horizontalement */
+  gap: 20px;                  /* espace entre logo et texte */
+  margin: 30px 0;
+  flex-wrap: wrap;            /* permet de passer sur 2 lignes sur mobile */
+}
+
+/* Logo */
+.todo-logo {
+  height: 70px;
+  width: 70px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  transition: all 0.3s ease;
+}
+
+/* Effet hover sur le logo */
+.todo-logo:hover {
+  transform: scale(1.1) rotate(-5deg);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+/* Texte */
+.todo-title {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #d14160, #bd5579);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 2px rgba(255, 71, 135, 0.623); /* léger glow rose, optionnel */
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
+  padding: 0 6px;
+  transition: all 0.3s ease;
+  cursor: default;
+  text-align: center;
+}
+
+/* Effet hover sur le texte */
+.todo-title:hover {
+  transform: scale(1.05);
+  text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.185);
+}

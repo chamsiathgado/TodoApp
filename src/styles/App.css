@@ -1,3 +1,28 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Fond général de l'application */
+.app-background {
+  min-height: 100vh;
+  width: 100vw;
+
+  background-image: url('../assets/background.jpeg');
+  background-size: cover;       /* couvre tout l'écran */
+  background-position: center;  /* centré */
+  background-repeat: no-repeat; /* pas de répétition */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+}
+
+
 .container {
   font-family: sans-serif;
   width: 700px;
@@ -6,6 +31,17 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #f9f9f9;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+
+  /* Effet 3D */
+  transform: perspective(1000px) rotateX(3deg) rotateY(3deg);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.container:hover {
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45);
 }
 
 h1 {
@@ -21,24 +57,54 @@ form {
 }
 
 input[type="text"] {
-  flex-grow: 1;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  margin-right: 5px;
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #f0f0f0;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 15px;
+  color: #333;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+}
+
+/* Placeholder rose */
+input[type="text"]::placeholder {
+  color: #3b3738;
+  opacity: 0.8;
+}
+
+/* Quand on clique dedans */
+input[type="text"]:focus {
+  border-color: #d14160;
+  box-shadow: 0 0 8px rgba(209, 65, 96, 0.4);
 }
 
 button {
-  padding: 8px 12px;
-  background-color: #eb0ba0;
+  padding: 10px 16px;
+  background-color: #d14160;
   color: white;
   border: none;
-  border-radius: 3px;
+  border-radius: 6px;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
+/* Effet au survol */
 button:hover {
-  background-color: #b93c81;
+  background-color: #b83552; /* un peu plus foncé */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Effet au clic */
+button:active {
+  transform: scale(0.97);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 ul {
@@ -51,7 +117,7 @@ li {
   justify-content: space-between;
   align-items: center;
   padding: 8px 0;
-  border-bottom: 1px solid #e6108d;
+  border-bottom: 1px solid #d14160;
 }
 
 li:last-child {
@@ -59,13 +125,37 @@ li:last-child {
 }
 
 li button {
-  background-color: #eb0ba0;
+  background-color: #d14160;
 }
 
 li button:hover {
-  background-color: #eb0ba0;
+  background-color: #d14160;
 }
 
 input[type="checkbox"] {
-  accent-color: #eb0ba0;
+  accent-color: #d14160;
+}
+
+.completed {
+  text-decoration: line-through 2px #d14160; /* barré rouge + épaisseur */
+  color: inherit; /* garde la couleur du texte */
+}
+
+.delete-icon {
+  color: #d14160;
+  font-size: 26px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 10px;
+}
+
+/* Effet au survol */
+.delete-icon:hover {
+  color: #b83552; /* un peu plus foncé */
+  transform: scale(1.2) rotate(-10deg); /* grossit + petit tilt */
+}
+
+/* Effet au clic */
+.delete-icon:active {
+  transform: scale(0.9);
 }

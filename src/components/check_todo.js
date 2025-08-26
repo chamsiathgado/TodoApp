@@ -1,3 +1,7 @@
+//import d'une poubelle depuis la librarie react-icons
+import { MdDeleteForever } from 'react-icons/md'
+
+//fonction composant
 function TodoItem({ todo, index, onDelete, onToggle }) {
   return (
     <li>
@@ -6,10 +10,13 @@ function TodoItem({ todo, index, onDelete, onToggle }) {
         checked={todo.completed} 
         onChange={() => onToggle(index)} 
       />
-      <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+      <span className={todo.completed ? "completed" : ""}> 
         {todo.text}
       </span>
-      <button onClick={() => onDelete(index)}>Supprimer</button>
+      <MdDeleteForever 
+        onClick={() => onDelete(index)}
+        className="delete-icon"
+      />
     </li>
   )
 }
