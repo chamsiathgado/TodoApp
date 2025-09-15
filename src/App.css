@@ -5,6 +5,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 0;
 }
 
 .container {
@@ -47,6 +48,7 @@ button {
 ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 li {
@@ -61,6 +63,7 @@ li span {
   flex: 1;
   margin-left: 10px;
   color: white;
+  text-align: left;
 }
 
 li span.completed {
@@ -73,6 +76,7 @@ li button {
   border: none;
   cursor: pointer;
   font-size: 16px;
+  color: white;
 }
 
 .clear-btn {
@@ -87,4 +91,55 @@ li button {
 
 .clear-btn:hover {
   background-color: #ff0000;
+}
+
+@media (max-width: 600px) {
+  body {
+    height: auto;
+    padding: 20px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 350px;
+    padding: 15px;
+  }
+
+  form {
+    flex-direction: column;
+  }
+
+  form input,
+  form button {
+    width: 100%;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  li button {
+    align-self: flex-end;
+  }
+}
+
+.stats {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #202225;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .stats {
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+  }
 }
