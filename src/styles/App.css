@@ -10,9 +10,9 @@ html, body {
   width: 100vw;
 
   background-image: url('../assets/background.jpeg');
-  background-size: cover;       /* couvre tout l'écran */
-  background-position: center;  /* centré */
-  background-repeat: no-repeat; /* pas de répétition */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
   display: flex;
   justify-content: center;
@@ -22,19 +22,17 @@ html, body {
     sans-serif;
 }
 
-
 .container {
   font-family: sans-serif;
-  width: 700px;
+  width: 90%;              /* s'adapte aux petits écrans */
+  max-width: 700px;        /* mais ne dépasse pas 700px */
   margin: 20px auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: #f9f9f9;
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 
-  /* Effet 3D */
   transform: perspective(1000px) rotateX(3deg) rotateY(3deg);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
@@ -48,11 +46,30 @@ h1 {
   text-align: center;
   color: #333;
   font-size: 3em;
-
 }
 
+/* Bannière */
+.todo-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.todo-logo {
+  width: 60px;
+  height: auto;
+}
+
+.todo-title {
+  font-size: 2rem;
+}
+
+/* Formulaire */
 form {
   display: flex;
+  gap: 10px;
   margin-bottom: 15px;
 }
 
@@ -69,13 +86,11 @@ input[type="text"] {
   box-shadow: 0 3px 6px rgba(0,0,0,0.05);
 }
 
-/* Placeholder rose */
 input[type="text"]::placeholder {
   color: #3b3738;
   opacity: 0.8;
 }
 
-/* Quand on clique dedans */
 input[type="text"]:focus {
   border-color: #d14160;
   box-shadow: 0 0 8px rgba(209, 65, 96, 0.4);
@@ -94,19 +109,18 @@ button {
   transition: all 0.3s ease;
 }
 
-/* Effet au survol */
 button:hover {
-  background-color: #b83552; /* un peu plus foncé */
+  background-color: #b83552;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
   transform: translateY(-2px);
 }
 
-/* Effet au clic */
 button:active {
   transform: scale(0.97);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Liste */
 ul {
   list-style: none;
   padding: 0;
@@ -124,21 +138,13 @@ li:last-child {
   border-bottom: none;
 }
 
-li button {
-  background-color: #d14160;
-}
-
-li button:hover {
-  background-color: #d14160;
-}
-
 input[type="checkbox"] {
   accent-color: #d14160;
 }
 
 .completed {
-  text-decoration: line-through 2px #d14160; /* barré rouge + épaisseur */
-  color: inherit; /* garde la couleur du texte */
+  text-decoration: line-through 2px #d14160;
+  color: inherit;
 }
 
 .delete-icon {
@@ -149,13 +155,58 @@ input[type="checkbox"] {
   margin-left: 10px;
 }
 
-/* Effet au survol */
 .delete-icon:hover {
-  color: #b83552; /* un peu plus foncé */
-  transform: scale(1.2) rotate(-10deg); /* grossit + petit tilt */
+  color: #b83552;
+  transform: scale(1.2) rotate(-10deg);
 }
 
-/* Effet au clic */
 .delete-icon:active {
   transform: scale(0.9);
+}
+
+/* 🌍 Responsive design */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .todo-logo {
+    width: 40px;
+  }
+
+  .todo-title {
+    font-size: 1.5rem;
+  }
+
+  form {
+    flex-direction: column;   /* input au-dessus du bouton */
+  }
+
+  button {
+    width: 100%;              /* bouton large */
+  }
+
+  li {
+    flex-direction: column;   /* chaque tâche en colonne */
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .delete-icon {
+    font-size: 22px;
+  }
+}
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(209, 65, 96, 0.1);
+  font-weight: bold;
+  color: #333;
+}
+
+.stats p {
+  margin: 0;
 }
