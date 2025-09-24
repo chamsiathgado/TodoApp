@@ -36,6 +36,14 @@ export default function App() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  const editTask = (id: number, newText: string) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, text: newText } : task
+      )
+    );
+  };
+
   const resetTasks = () => {
     setTasks(defaultTasks);
     localStorage.setItem("tasks", JSON.stringify(defaultTasks));
@@ -50,7 +58,13 @@ export default function App() {
       </button>
 
       <TaskForm addTask={addTask} />
-      <TaskList tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask} />
+      <TaskList
+        tasks={tasks}
+        toggleTask={toggleTask}
+        deleteTask={deleteTask}
+        editTask={editTask}
+      />
+
     </div>
   );
 }
