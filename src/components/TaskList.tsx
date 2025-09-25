@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group"
 import TaskItem from "./TaskItem";
 import type { Task } from "../types";
 
@@ -17,19 +18,20 @@ export default function TaskList({ tasks, toggleTask, deleteTask, editTask }: Ta
 
   return (
     <>
-      <ul>
+      <TransitionGroup component="ul">
         {[...tasks]
           .sort((a, b) => (b.completed ? 1 : 0) - (a.completed ? 1 : 0))
           .map((task) => (
-            <TaskItem
-              key={task.id}
-              task={task}
-              toggleTask={toggleTask}
-              deleteTask={deleteTask}
-              editTask={editTask}
-            />
+            <CSSTransition key={task.id} timeout={300} classNames="fade">
+              <TaskItem
+                task={task}
+                toggleTask={toggleTask}
+                deleteTask={deleteTask}
+                editTask={editTask}
+              />
+            </CSSTransition>
           ))}
-      </ul>
+      </TransitionGroup>
 
       <div className="stats">
         <p>Total : {totalTasks}</p>
