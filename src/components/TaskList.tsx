@@ -1,4 +1,3 @@
-import React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group"
 import TaskItem from "./TaskItem";
 import type { Task } from "../types";
